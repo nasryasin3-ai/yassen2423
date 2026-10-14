@@ -1,0 +1,14 @@
+{
+  "name": "pdf-converter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Client-side PDF to Word/Excel/Text converter (Arabic-ready)",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "tesseract.js": "5.1.1",
+    "tesseract.js-core": "5.1.1",
+    "@tesseract.js-data/ara": "1.0.0",
+    "@tesseract.js-data/eng": "1.0.0"
+  }
+}
