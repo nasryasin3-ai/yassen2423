@@ -65,7 +65,19 @@ function App() {
       setConversionResult({ url, filename, targetFormat });
       setStep('result');
     } catch (err: any) {
-      setError(err.response?.data?.detail || 'Conversion failed');
+      let message = 'Conversion failed';
+      if (err.response?.data instanceof Blob) {
+        try {
+          const text = await err.response.data.text();
+          const json = JSON.parse(text);
+          if (json.detail) message = json.detail;
+        } catch {
+          // ignore
+        }
+      } else if (err.response?.data?.detail) {
+        message = err.response.data.detail;
+      }
+      setError(message);
     } finally {
       setLoading(false);
     }
